@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "SinkIt",
+  "version": "1.0",
+  "description": "Adaptive Intent UI Browser Extension for Wikipedia and The Hindu",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "webNavigation",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.wikipedia.org/*",
+    "*://*.thehindu.com/*",
+    "*://*.thehindus.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.wikipedia.org/*"],
+      "js": [
+        "content_scripts/wikipedia/tracker.js",
+        "content_scripts/wikipedia/ui.js"
+      ],
+      "css": [
+        "content_scripts/wikipedia/styles.css"
+      ]
+    },
+    {
+      "matches": ["*://*.thehindu.com/*", "*://*.thehindus.com/*"],
+      "js": [
+        "content_scripts/thehindu/tracker.js",
+        "content_scripts/thehindu/ui.js"
+      ],
+      "css": [
+        "content_scripts/thehindu/styles.css"
+      ]
+    }
+  ]
+}
